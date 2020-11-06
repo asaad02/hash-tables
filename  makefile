@@ -1,0 +1,12 @@
+CFLAGS = -std=c99 -Wall -pedantic   
+CC =gcc
+
+all: hash.o
+
+
+hash.o: hash.c
+	$(CC) $(CFLAGS) -c hash.c -o $@
+	
+
+clean: 
+	rm -i  hash.o 
