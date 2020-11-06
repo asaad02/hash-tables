@@ -247,11 +247,10 @@ int hashAccuracy( struct HashTable *table ){
 /* Move the pointers in the HashTable to get a better hashAccuracy */
 void rehash( struct HashTable *table ){
 
-    int i = 0;
     int hash = 0;
     int total = 0;
  
-    while (i < table->capacity)
+    for (int i = 0;i < table->capacity; i++)
     {
         if (table->data[i] != NULL)
         {
@@ -261,7 +260,7 @@ void rehash( struct HashTable *table ){
 
             if (i < hash)
             {
-                total = total +  table->capacity - hash + index ;
+                total = total + (table->capacity - hash) + index ;
                 if( table->data[total] == NULL){
                     
                         table->data[total] = table->data[i] ;
@@ -270,7 +269,7 @@ void rehash( struct HashTable *table ){
                 }
             }
             if( i > hash){
-                total = total + index - hash;;
+                total = total + (index - hash);;
                 if( table->data[total] == NULL){
                     table->data[total] = table->data[i] ;
                     table->data[i] = NULL;  
@@ -280,7 +279,7 @@ void rehash( struct HashTable *table ){
             }
         }
 
-    i++;
+    
     }
     
 }
